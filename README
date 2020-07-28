@@ -1,0 +1,10 @@
+1. start kafka cluster with 3 nodes
+2. create a topic with replication factor = 3, min.in.sync.replicas = 2
+3. start a producer
+4. start a kafka.js consumer
+5. find and kill the broker that is acting as a topic leader
+6. wait for a rebalance, check that there are still 2 active brokers with a new leader
+7. kill the new leader, now the cluster has only 1 node, which is not enough to commit any new data
+8. get one of the dead nodes back up, wait for it to sync up
+9. observe the producer to recover
+10. observe kafka.js consumer to recover, but to fetch new records at 30s intervals
